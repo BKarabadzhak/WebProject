@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <script src="script.js"></script>
+    <title>CSV reader</title>
+  </head>
+  <body>
+    <form
+      method="POST"
+      name="form"
+      action="./controller.php"
+      enctype="multipart/form-data"
+    >
+      <label for="file">File</label>
+      <input
+        type="file"
+        id="file"
+        name="file"
+        accept=".csv"
+      /><br />
+      <input type="submit" value="Read file" />
+    </form>
+  </body>
+</html>
