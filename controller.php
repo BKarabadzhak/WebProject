@@ -1,22 +1,25 @@
 <?php
+include "database-initialization.php";
 
 if ($_FILES["file"]["tmp_name"]) {
 
+    createTable();
+    $connection = $GLOBALS['connection'];
+    $tableName = $GLOBALS['currentTable'];
+
     $row = 1;
     if (($handle = fopen($_FILES["file"]["tmp_name"], "r")) !== FALSE) {
-        if ($row == 1) {
-            $row++;
-        } else {
-            while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-                $num = count($data);
-                echo "<p> $num полей в строке $row: <br /></p>\n";
-                $row++;
-                for ($c = 0; $c < $num; $c++) {
-                    echo $data[$c] . "<br />\n";
-                }
+        while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+            if ($row != 1) {
+                $sql = $connection->prepare("INSERT INTO {$tableName} (question, correct_answer, answer_1, answer_2, answer_3, answer_4) 
+                VALUES (?, ?, ?, ?, ?, ?)");
+
+                $sql->execute($data); 
             }
-            fclose($handle);
+            $row++;
         }
+
+        fclose($handle);
     }
 } else {
     showErrorMessageFileIsNotSet();

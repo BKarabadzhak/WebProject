@@ -2,6 +2,7 @@
 
 function openCon()
 {
+    $conn = null;
     try {
         $dbhost = "localhost:3306";
         $dbuser = "root";

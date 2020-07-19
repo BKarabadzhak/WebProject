@@ -1,13 +1,18 @@
 <?php
+include "database-connection.php";
 
-$conn = openCon();
-$GLOBALS['conn'] = $conn;
-$rand = uniqid();
+function createTable()
+{
+    $connection = openCon();
+    $GLOBALS['connection'] = $connection;
+    $rand = uniqid();
+    $GLOBALS['currentTable'] = "question{$rand}";
 
-$sql = $conn->prepare("create table Question{$rand} (question varchar(255), correct_answer varchar(255), answer_1 varchar(255), answer_2 varchar(255), answer_3 varchar(255), answer_4 varchar(255))");
+    $sql = $connection->prepare("create table question{$rand} (question varchar(255), correct_answer varchar(255), answer_1 varchar(255), answer_2 varchar(255), answer_3 varchar(255), answer_4 varchar(255))");
 
-if (!$sql->execute($data)) {
-    echo 'Failed sql request';
-} else {
-    echo 'Successful sql request';
+    if (!$sql->execute()) {
+        echo 'Failed sql request';
+    } else {
+        echo 'Successful sql request';
+    }
 }
