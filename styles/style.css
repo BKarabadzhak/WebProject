@@ -1,0 +1,20 @@
+
+.question {
+    margin-top: 0.5rem;
+    border: 3px solid #33495D;
+    padding: 5px 20px 0 20px;
+}
+
+.question ul {
+    list-style-type: none;
+    padding: unset;
+}
+
+
+.container {
+    /*width: 100%;*/
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
