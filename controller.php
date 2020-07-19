@@ -1,10 +1,10 @@
 <?php
-include "database-initialization.php";
 include "Question.php";
 
 if ($_FILES["file"]["tmp_name"]) {
 
     $connection = openCon();
+    $GLOBALS['connection'] = $connection;
 
     addRowInTests($connection);
 
