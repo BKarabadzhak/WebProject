@@ -9,12 +9,12 @@ if ($_FILES["file"]["tmp_name"]) {
 
     $row = 1;
     if (($handle = fopen($_FILES["file"]["tmp_name"], "r")) !== FALSE) {
-        while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+        while (($data = fgetcsv($handle)) !== FALSE) {
             if ($row != 1) {
-                $sql = $connection->prepare("INSERT INTO {$tableName} (question, correct_answer, answer_1, answer_2, answer_3, answer_4) 
+                $sql = $connection->prepare("INSERT INTO {$tableName} (question, correct_answer, answer_1, answer_2, answer_3, answer_4)
                 VALUES (?, ?, ?, ?, ?, ?)");
 
-                $sql->execute($data); 
+                $sql->execute($data);
             }
             $row++;
         }

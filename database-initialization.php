@@ -11,8 +11,8 @@ function createTable()
     $sql = $connection->prepare("create table question{$rand} (question varchar(255), correct_answer varchar(255), answer_1 varchar(255), answer_2 varchar(255), answer_3 varchar(255), answer_4 varchar(255))");
 
     if (!$sql->execute()) {
-        echo 'Failed sql request';
+        echo 'Failed sql request<br>';
     } else {
-        echo 'Successful sql request';
+        echo 'Successful sql request<br>';
     }
 }
