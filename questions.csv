@@ -1,5 +1,5 @@
-Question,Correct answer,Answer1,Answer2,Answer3,Answer4
-What colour jersey is worn by the winners of each stage of the Tour De France?,Yellow,Yellow,Rocky Marciano,Golf,Switzerland
-Name the only heavyweight boxing champion to finish his career of 49 fights without ever having been defeated,Rocky Marciano,Yellow,Rocky Marciano,Golf,Switzerland
-Which sport does Constantino Rocca play?,Golf,Yellow,Rocky Marciano,Golf,Switzerland
-Name the country where you would find the Cresta Run,Switzerland,Yellow,Rocky Marciano,Golf,Switzerland
+Question,Correct answers number,Answers
+What colour jersey is worn by the winners of each stage of the Tour De France?,1,Yellow,Rocky Marciano,Golf,Switzerland
+Name the only heavyweight boxing champion to finish his career of 49 fights without ever having been defeated,2,Yellow,Rocky Marciano,Golf,Switzerland
+Which sport does Constantino Rocca play?,1,Golf,Rocky Marciano,Yellow,Switzerland
+Name the country where you would find the Cresta Run,1,Switzerland,Yellow,Rocky Marciano,Golf

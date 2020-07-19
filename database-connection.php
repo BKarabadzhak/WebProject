@@ -7,7 +7,7 @@ function openCon()
         $dbhost = "localhost:3306";
         $dbuser = "root";
         $dbpass = "";
-        $dbname = "web_project";
+        $dbname = "web-project";
 
         $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
     } catch (PDOException $ex) {
