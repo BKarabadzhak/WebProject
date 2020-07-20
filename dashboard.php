@@ -34,8 +34,8 @@ function renderTest($test) {
     $testName = $test['name'];
 
     echo "<p>$testName";
-    echo "<button id='$testId' onclick='alert()'>Test</button>";
-    echo "<button id='$testId' onclick='alert()'>Review</button>";
+    echo "<button id='$testId' class=\"but\" onclick='redirectionToTest(this)'>Test</button>";
+    echo "<button id='$testId' class=\"but\" onclick='redirectionToReview(this)'>Review</button>";
     echo "</p>";
 }
 ?>

@@ -1,5 +1,11 @@
 <?php
-include "Question.php";
+include "database-connection.php";
+
+if ($_POST['testName']) {
+    $GLOBALS['testName'] = $_POST['testName'];
+} else {
+    showErrorMessageFileIsNotNamed();
+}
 
 if ($_FILES["file"]["tmp_name"]) {
 
@@ -24,6 +30,13 @@ if ($_FILES["file"]["tmp_name"]) {
     showErrorMessageFileIsNotSet();
 }
 
+echo "<p>Your test " . $GLOBALS['testName'] . " has been loaded.</p>";
+
+function showErrorMessageFileIsNotNamed()
+{
+    echo "<p>File isn't named</p>";
+}
+
 function showErrorMessageFileIsNotSet()
 {
     echo "<p>File isn't set</p>";
@@ -32,11 +45,9 @@ function showErrorMessageFileIsNotSet()
 function addRowInTests($connection)
 {
     $sql = $connection->prepare("INSERT INTO tests (name) VALUES (?)");
-    $testName = "test" . uniqid();
-    $sql->execute(array($testName));
-    $GLOBALS['testName'] = $testName;
+    $sql->execute(array($GLOBALS['testName']));
 
-    setCurrentTestId($connection, $testName);
+    setCurrentTestId($connection, $GLOBALS['testName']);
 }
 
 function addRowInQuestions($connection, $data)

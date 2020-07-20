@@ -16,9 +16,16 @@ require("index_start.php");
         accept=".csv"
     />
     <br />
+    <label for="testName">Set name of the test:</label>
+    <input
+        type="text"
+        id="testName"
+        name="testName"
+    />
+    <br />
     <input type="submit" value="Read file" />
 </form>
-<a href="test.php"> Take a test </a>
+<a href="dashboard.php"> Take a test </a>
 
 <?php
 require("index_end.php");
