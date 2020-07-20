@@ -5,6 +5,7 @@ if ($_POST['testName']) {
     $GLOBALS['testName'] = $_POST['testName'];
 } else {
     showErrorMessageFileIsNotNamed();
+    exit();
 }
 
 if ($_FILES["file"]["tmp_name"]) {
@@ -28,18 +29,19 @@ if ($_FILES["file"]["tmp_name"]) {
     }
 } else {
     showErrorMessageFileIsNotSet();
+    exit();
 }
 
 echo "<p>Your test " . $GLOBALS['testName'] . " has been loaded.</p>";
 
 function showErrorMessageFileIsNotNamed()
 {
-    echo "<p>File isn't named</p>";
+    echo "<p>File isn't named.</p>";
 }
 
 function showErrorMessageFileIsNotSet()
 {
-    echo "<p>File isn't set</p>";
+    echo "<p>File isn't set.</p>";
 }
 
 function addRowInTests($connection)

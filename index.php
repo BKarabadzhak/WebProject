@@ -21,6 +21,7 @@ require("index_start.php");
         type="text"
         id="testName"
         name="testName"
+        value=""
     />
     <br />
     <input type="submit" value="Read file" />

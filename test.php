@@ -3,6 +3,12 @@ include("classes/Question.php");
 include("classes/TestAnswer.php");
 include "database-connection.php";
 
+if (!isset($_GET['id'])) {
+    echo "First select the test you want to take.<br>";
+    echo "<a href=\"dashboard.php\"> Take a test </a>";
+    exit();
+}
+
 $testId = $_GET['id'];
 $connection = openCon();
 
@@ -71,7 +77,7 @@ function getQuestions($connection, $testId)
     $sqlQuestion = $connection->prepare("SELECT * FROM questions WHERE test_id = '" . $testId . "';");
     $sqlQuestion->execute();
     while ($rowQuestion = $sqlQuestion->fetch(PDO::FETCH_ASSOC)) {
-        $questionId = $rowQuestion['id']; 
+        $questionId = $rowQuestion['id'];
         $answersArray = array();
         $sql = $connection->prepare("SELECT * FROM answers WHERE question_id = '" . $questionId . "';");
         $sql->execute();
