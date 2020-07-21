@@ -1,7 +1,7 @@
 <?php
-include("classes/Question.php");
-include("classes/TestAnswer.php");
-include "database-connection.php";
+include_once("classes/Question.php");
+include_once("classes/TestAnswer.php");
+include_once "database-connection.php";
 
 if (!isset($_GET['id'])) {
     echo "First select the test you want to take.<br>";

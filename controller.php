@@ -74,9 +74,9 @@ function addRowInAnswers($connection, $data)
     for ($i = 0; $i < $answersNumber; $i++) {
         $sql = $connection->prepare("INSERT INTO answers (answer, is_correct, question_id) VALUES (?, ?, ?)");
         if ($i < $correctAnswersNumber) {
-            $boolean = true;
+            $boolean = 1;
         } else {
-            $boolean = false;
+            $boolean = 0;
         }
 
         $sql->execute(array($data[$i + 2], $boolean, $GLOBALS['questionId']));
