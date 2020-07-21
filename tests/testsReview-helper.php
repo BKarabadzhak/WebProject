@@ -34,6 +34,8 @@ if ($associativeArray) {
     if (!$sql->execute(array($commentName, $comment, $questionId))) {
         throw "Error " . $sql->errorInfo();
     };
+
+    echo $connection->lastInsertId();
 }
 
 function renderTestReview($questions, $testId, $connection)
@@ -70,9 +72,10 @@ function renderTestReview($questions, $testId, $connection)
         }
 
         foreach ($submittedComments as $comment) {
-            echo "<p class=\"comment\">
+            echo "<p class=\"comment\" id=\"com" . $comment->id . "\">
             <span>Comment name: " . $comment->name . "</span><br>
-            <span>Comment: " . $comment->comment . "</span></p>";
+            <span>Comment: " . $comment->comment . "</span><br>
+            <button type=\"button\" id=\"butDel" . $comment->id . "\" onclick=\"deleteComment(this)\">Delete</button></p>";
         }
         echo "</div>";
 
@@ -93,6 +96,7 @@ function renderTestReview($questions, $testId, $connection)
 
 
             echo "<input id='$inputId' name=\"$name\" type='$type' value=\"$answer->id\"/> <label for='$inputId'>$answer->text</label>";
+            echo "<button type=\"button\" id=\"$answer->id\" onclick=\"addAnswerComment(this)\">Add comment</button>";
 
             echo "</li>";
         }
@@ -102,6 +106,5 @@ function renderTestReview($questions, $testId, $connection)
         echo "</div>";
     }
 
-    //echo "<input type=\"submit\" value=\"Submit\" class='submit-test' />";
     echo "</form>";
 }

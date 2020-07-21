@@ -20,7 +20,7 @@ function generateXMLfile(element) {
     data: dataJSON,
     url: "./generateXMLfile.php",
     method: "POST",
-    success: successfulCallback
+    success: successfulCallback,
   };
 
   ajax(dataRequest, element.id);
@@ -33,7 +33,7 @@ function ajax(dataRequest, id) {
 
   xhr.onload = function () {
     if (xhr.status === 200) {
-      dataRequest.success(id);
+      dataRequest.success(id, xhr.response);
     } else {
       console.log("Problems with response, try again.");
     }
@@ -43,7 +43,6 @@ function ajax(dataRequest, id) {
 }
 
 function addQuestionComment(element) {
-
   document.getElementById(element.id).disabled = true;
 
   let div_el = document.getElementById("div" + element.id);
@@ -75,14 +74,14 @@ function addQuestionComment(element) {
 
   var buttonCancel = document.createElement("button");
   buttonCancel.setAttribute("type", "button");
-  buttonCancel.setAttribute("id", "butC"+element.id);
+  buttonCancel.setAttribute("id", "butC" + element.id);
   buttonCancel.setAttribute("onclick", "addQuestionCommentSubmitCancel(this)");
   node = document.createTextNode("Cancel");
   buttonCancel.appendChild(node);
 
   var button = document.createElement("button");
   button.setAttribute("type", "button");
-  button.setAttribute("id", "but"+element.id);
+  button.setAttribute("id", "but" + element.id);
   button.setAttribute("onclick", "addQuestionCommentSubmit(this)");
   node = document.createTextNode("Submit");
   button.appendChild(node);
@@ -106,7 +105,7 @@ function addQuestionCommentSubmit(element) {
   let data = {
     questionId: id,
     commentName: commentName,
-    comment: comment
+    comment: comment,
   };
 
   var dataJSON = JSON.stringify(data);
@@ -114,20 +113,21 @@ function addQuestionCommentSubmit(element) {
     data: dataJSON,
     url: "./tests/testsReview-helper.php",
     method: "POST",
-    success: moveCommentValuesToSubmitedDiv
+    success: moveCommentValuesToSubmitedDiv,
   };
 
   ajax(dataRequest, id);
 }
 
-function addQuestionCommentSubmitCancel (element) {
+function addQuestionCommentSubmitCancel(element) {
   let id = element.id.slice(4);
   let div_el = document.getElementById("div" + id);
   div_el.innerHTML = "";
   document.getElementById(id).disabled = false;
 }
 
-function moveCommentValuesToSubmitedDiv(id) {
+function moveCommentValuesToSubmitedDiv(id, response) {
+  let commentId = JSON.parse(response);
 
   let commentName = document.getElementById("inp" + id).value;
   let comment = document.getElementById("area" + id).value;
@@ -135,6 +135,7 @@ function moveCommentValuesToSubmitedDiv(id) {
   let divSubmited = document.getElementById("divSubmited" + id);
   let p_el = document.createElement("p");
   p_el.setAttribute("class", "comment");
+  p_el.setAttribute("id", commentId);
 
   let span1_el = document.createElement("span");
   let node = document.createTextNode("Comment name: " + commentName);
@@ -143,15 +144,53 @@ function moveCommentValuesToSubmitedDiv(id) {
   let span2_el = document.createElement("span");
   node = document.createTextNode("Comment: " + comment);
   span2_el.appendChild(node);
+
+  let button = document.createElement("button");
+  button.setAttribute("type", "button");
+  button.setAttribute("id", "butDel" + commentId);
+  button.setAttribute("onclick", "deleteComment(this)");
+  node = document.createTextNode("Delete");
+  button.appendChild(node);
+
   let br1 = document.createElement("br");
+  let br2 = document.createElement("br");
 
   p_el.appendChild(span1_el);
   p_el.appendChild(br1);
   p_el.appendChild(span2_el);
+  p_el.appendChild(br2);
+  p_el.appendChild(button);
   divSubmited.appendChild(p_el);
 
   let div_el = document.getElementById("div" + id);
   div_el.innerHTML = "";
 
   document.getElementById(id).disabled = false;
+}
+
+function deleteComment(element) {
+  let commentId = element.id.slice(6);
+
+  let data = {
+    commentId: commentId,
+  };
+
+  var dataJSON = JSON.stringify(data);
+  var dataRequest = {
+    data: dataJSON,
+    url: "./deleteCommentToQuestion.php",
+    method: "POST",
+    success: deleteCommentOnThePage,
+  };
+
+  ajax(dataRequest, commentId);
+}
+
+function deleteCommentOnThePage(commentId) {
+  let commentToDelete = document.getElementById("com" + commentId);
+  commentToDelete.remove();
+}
+
+function addAnswerComment() {
+  alert();
 }
