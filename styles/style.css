@@ -64,3 +64,14 @@ div.comment {
 .comment-btn {
   float: right;
 }
+
+.align-center {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.align-center * {
+  justify-content: center;
+  display: flex;
+  flex-basis: 100%;
+}

@@ -110,4 +110,5 @@ function renderTestReview($questions, $testId, $connection)
     }
 
     echo "</form>";
+    echo "<div class='align-center'><a href='index.php'>Start Page</a> <br> <a href='dashboard.php'>Tests List</a></div>";
 }
