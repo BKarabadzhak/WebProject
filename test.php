@@ -14,6 +14,10 @@ $testId = $_GET['id'];
 $connection = openCon();
 
 $questions = getQuestions($connection, $testId);
+foreach($questions as $question) {
+    shuffle($question->answers);
+    usleep(1);
+}
 
 require("index_start.php");
 renderTest($questions, $testId);
