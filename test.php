@@ -2,11 +2,11 @@
 include_once("classes/Question.php");
 include_once("classes/TestAnswer.php");
 include_once "database-connection.php";
-include_once("tests-helper.php");
+include_once("./tests/tests-helper.php");
 
 if (!isset($_GET['id'])) {
     echo "First select the test you want to take.<br>";
-    echo "> Take a test </a>";
+    echo "Take a test";
     exit();
 }
 
