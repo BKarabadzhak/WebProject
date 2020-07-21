@@ -49,6 +49,12 @@
 .comment {
   border: 1px solid black;
   padding: 5px;
+  margin-top: 5px;
+}
+
+div.comment {
+  display: flex;
+  justify-content: space-between;
 }
 
 .textArr {
