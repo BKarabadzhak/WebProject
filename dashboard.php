@@ -7,20 +7,24 @@ $GLOBALS['connection'] = $connection;
 
 $tests = getTests();
 
-echo "
-<div class='table-container'>
-<table>";
-for ($i = 0; $i < count($tests); $i++) {
-    renderTestDisplay($tests[$i]);
-    
-}
-echo "
-</div>
-</table>";
+echo "<div class='table-container'>";
 
+if(count($tests) < 1) {
+    echo "<p style='text-align: center;'>There no tests yet.</p>";
+} else {
+    echo "
+    <table>";
+    for ($i = 0; $i < count($tests); $i++) {
+        renderTestDisplay($tests[$i]);   
+    }
+    echo "
+    </table>
+    ";
+}
 echo "
 <div class='back-link'>
 <a href=\"index.php\"> <- Back </a>
+</div>
 </div>
 ";
 require("index_end.php");
