@@ -2,14 +2,11 @@
 
 function openCon()
 {
+    $configs = include_once("configs.php");
+
     $conn = null;
     try {
-        $dbhost = "localhost:3306";
-        $dbuser = "root";
-        $dbpass = "";
-        $dbname = "web-project";
-
-        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+        $conn = new PDO("mysql:host=$configs->dbhost;dbname=$configs->dbname", $configs->dbuser, $configs->dbpass);
     } catch (PDOException $ex) {
         echo ("Unsuccessful connection to the database.");
         exit();

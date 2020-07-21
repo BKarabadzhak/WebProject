@@ -6,14 +6,11 @@ $associativeArray = json_decode(json_encode($dataClassObject), TRUE);
 
 function openConn()
 {
+
+    $cofs = include_once("configs.php");
     $conn = null;
     try {
-        $dbhost = "localhost:3306";
-        $dbuser = "root";
-        $dbpass = "";
-        $dbname = "web-project";
-
-        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+        $conn = new PDO("mysql:host=$cofs->dbhost;dbname=$cofs->dbname", $cofs->dbuser, $cofs->dbpass);
     } catch (PDOException $ex) {
         echo ("Unsuccessful connection to the database.");
         exit();
