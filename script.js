@@ -133,7 +133,7 @@ function moveCommentValuesToSubmitedDiv(id, response) {
   let comment = document.getElementById("area" + id).value;
 
   let divSubmited = document.getElementById("divSubmited" + id);
-  let p_el = document.createElement("p");
+  let p_el = document.createElement("div");
   p_el.setAttribute("class", "comment");
   p_el.setAttribute("id", commentId);
 
@@ -154,11 +154,14 @@ function moveCommentValuesToSubmitedDiv(id, response) {
 
   let br1 = document.createElement("br");
   let br2 = document.createElement("br");
+  let div_v = document.createElement("div");
 
-  p_el.appendChild(span1_el);
-  p_el.appendChild(br1);
-  p_el.appendChild(span2_el);
-  p_el.appendChild(br2);
+
+  div_v.appendChild(span1_el);
+  div_v.appendChild(br1);
+  div_v.appendChild(span2_el);
+  div_v.appendChild(br2);
+  p_el.appendChild(div_v);
   p_el.appendChild(button);
   divSubmited.appendChild(p_el);
 

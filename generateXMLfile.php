@@ -81,7 +81,10 @@ foreach ($questionss as $questions) {
 
 $fileName = "./XMLFiles/file" . $testId . ".xml";
 if (!file_exists($fileName)) {
-    $xml->saveXML($fileName);
+    if(!$xml->saveXML($fileName)) {
+        // header('Status Code: 200');
+        echo "There is a error"; 
+    }
 }
 
 function getQuestions($connection, $testId)
