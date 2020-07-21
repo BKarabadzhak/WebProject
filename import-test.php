@@ -26,7 +26,7 @@ require("index_start.php");
         />
         <input type="submit" value="Read file" />
     </form>
-    <div style="margin-top:10px;">
+    <div class="back-link">
         <a href="index.php"> <- Back</a>
     </div>
 </div>

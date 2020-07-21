@@ -2,17 +2,27 @@
 include "database-connection.php";
 
 require("index_start.php");
-echo "<a href=\"index.php\"> Read CSV file </a>";
-
 $connection = openCon();
 $GLOBALS['connection'] = $connection;
 
 $tests = getTests();
 
+echo "
+<div class='table-container'>
+<table>";
 for ($i = 0; $i < count($tests); $i++) {
     renderTestDisplay($tests[$i]);
+    
 }
+echo "
+</div>
+</table>";
 
+echo "
+<div class='back-link'>
+<a href=\"index.php\"> <- Back </a>
+</div>
+";
 require("index_end.php");
 
 function getTests()
@@ -33,10 +43,21 @@ function renderTestDisplay($test) {
     $testId = $test['id'];
     $testName = $test['name'];
 
-    echo "<p>$testName";
-    echo "<button id='$testId' class=\"but\" onclick='redirectionToTest(this)'>Test</button>";
-    echo "<button id='$testId' class=\"but\" onclick='redirectionToReview(this)'>Review</button>";
-    echo "<button id='$testId' class=\"but\" onclick='generateXMLfile(this)'>Generate Moodle XML file</button>";
-    echo "</p>";
+    echo "
+    <tr>
+        <td>
+            $testName
+        </td>
+        <td>
+            <button id='$testId' class=\"but\" onclick='redirectionToTest(this)'>Test</button>
+        </td>
+        <td>
+            <button id='$testId' class=\"but\" onclick='redirectionToReview(this)'>Review</button>
+        </td>
+        <td>
+            <button id='$testId' class=\"but\" onclick='generateXMLfile(this)'>Generate Moodle XML file</button>
+        </td>
+    </tr>
+    ";
 }
 ?>

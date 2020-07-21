@@ -3,6 +3,7 @@
   margin-top: 0.5rem;
   border: 3px solid #33495d;
   padding: 5px 20px 0 20px;
+  border-radius: 5px;
 }
 
 .question ul {
@@ -11,18 +12,18 @@
 }
 
 .dialog {
-    height: 10em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column;
+  height: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
 }
 
 .dialog > div {
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
@@ -39,4 +40,8 @@
 
 .submit-test {
   margin: 10px auto;
+}
+
+.back-link {
+  margin-top: 10px;
 }
