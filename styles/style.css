@@ -1,4 +1,3 @@
-
 .question {
     margin-top: 0.5rem;
     border: 3px solid #33495D;
@@ -21,4 +20,8 @@
 
 .but {
     margin-left: 7px;
+}
+
+.submit-test {
+    margin: 10px auto;
 }

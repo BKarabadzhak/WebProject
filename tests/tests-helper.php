@@ -1,45 +1,15 @@
 <?php
-include_once("classes/Question.php");
-include_once("classes/TestAnswer.php");
-include_once "database-connection.php";
 
-if (!isset($_GET['id'])) {
-    echo "First select the test you want to take.<br>";
-    echo "<a href=\"dashboard.php\"> Take a test </a>";
-    exit();
-}
-
-$testId = $_GET['id'];
-$connection = openCon();
-
-$questions = getQuestions($connection, $testId);
-
-/*$questions = array(
-    new Question(1, "ask1", array(
-        new TestAnswer(1 ,"ans1", true),
-        new TestAnswer(2,"ans2", true),
-        new TestAnswer(3, "ans3")
-    )),
-    new Question(2, "ask2", array(
-        new TestAnswer(1 ,"ans1"),
-        new TestAnswer(2,"ans2"),
-        new TestAnswer(3, "ans3")
-    )),
-    new Question(3, "ask3", array(
-        new TestAnswer(1 ,"ans1"),
-        new TestAnswer(2,"ans2"),
-        new TestAnswer(3, "ans3")
-    )),
-);*/
-
-//var_dump($questions);
-require("index_start.php");
-getTest($questions);
-require("index_end.php");
-
-function getTest($questions)
+function renderTest($questions)
 {
-    echo "<form class=\"test\">";
+    echo "
+        <form 
+             class=\"test\"
+             method=\"POST\"
+             name=\"form\"
+             action=\"test-result.php\"
+             enctype=\"multipart/form-data\"
+        >";
     foreach ($questions as $question) {
         echo "<div class=\"question\">";
         echo "<div class=\"text\">";
@@ -59,7 +29,7 @@ function getTest($questions)
 
             $inputId = $question->id . $answer->id;
 
-            echo "<input id='$inputId' name=\"$question->id\" type='$type' value=\"$answer->id\"/> <label for='$inputId'> $answer->text";
+            echo "<input id='$inputId' name=\"$question->id\" type='$type' value=\"$answer->id\"/> <label for='$inputId'>$answer->text</label>";
 
             echo "</li>";
         }
@@ -68,6 +38,8 @@ function getTest($questions)
         echo "</div>";
         echo "</div>";
     }
+
+    echo "<button type='submit' class='submit-test'>Submit</button>";
     echo "</form>";
 }
 
@@ -89,3 +61,4 @@ function getQuestions($connection, $testId)
 
     return $questions;
 }
+

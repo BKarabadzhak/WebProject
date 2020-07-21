@@ -1,5 +1,5 @@
 function redirectionToTest(element) {
-  location.href = "./test.php?id=" + element.id;
+  location.href = "./tests/test.php?id=" + element.id;
 }
 
 function redirectionToReview(element) {
