@@ -1,36 +1,42 @@
-.question, .result {
-    margin-top: 0.5rem;
-    border: 3px solid #33495D;
-    padding: 5px 20px 0 20px;
+.question,
+.dialog {
+  margin-top: 0.5rem;
+  border: 3px solid #33495d;
+  padding: 5px 20px 0 20px;
 }
 
 .question ul {
-    list-style-type: none;
-    padding: unset;
+  list-style-type: none;
+  padding: unset;
 }
 
-.result {
-    min-height: 100px;
-    text-align: center;
+.dialog {
+    height: 10em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
 }
 
-.result > span {
-    margin-top: auto;
-    margin-bottom: auto;
+.dialog > div {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container {
-    /*width: 100%;*/
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+  /*width: 100%;*/
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .but {
-    margin-left: 7px;
+  margin-left: 7px;
 }
 
 .submit-test {
-    margin: 10px auto;
+  margin: 10px auto;
 }

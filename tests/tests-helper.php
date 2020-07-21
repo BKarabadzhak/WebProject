@@ -10,7 +10,7 @@ function renderTest($questions, $testId)
              class=\"test\"
              method=\"POST\"
              name=\"form\"
-             action=\"test-result.php\"
+             action=\"test-dialog.php\"
              enctype=\"multipart/form-data\"
         >";
     echo "<input hidden='true' name='testId' value='$testId'>";

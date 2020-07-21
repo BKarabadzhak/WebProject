@@ -31,7 +31,10 @@ foreach($questions as $question) {
     }
 }
 
-echo "<div class=\"result\"> <span>You've earned $points points.</span></div>";
+echo "<div class=\"dialog\"> 
+<div>You've earned $points points.</div>
+<div><a href='index.php'>Start Page</a></div>
+</div>";
 
 
 function getAnswer($question, $asnwered_ids, $post)  {
