@@ -1,7 +1,8 @@
 <?php
 include_once("classes/Question.php");
 include_once("classes/TestAnswer.php");
-include_once "database-connection.php";
+include_once("classes/Comment.php");
+require_once "database-connection.php";
 include_once("./tests/tests-helper.php");
 include_once("./tests/testsReview-helper.php");
 
@@ -13,11 +14,12 @@ if (!isset($_GET['id'])) {
 
 $testId = $_GET['id'];
 $connection = openCon();
+$GLOBALS['connection'] = $connection;
 
 $questions = getQuestions($connection, $testId);
 
 require("index_start.php");
-renderTestReview($questions, $testId);
+renderTestReview($questions, $testId, $connection);
 require("index_end.php");
 
 ?>

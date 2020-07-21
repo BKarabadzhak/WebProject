@@ -100,12 +100,11 @@ function addQuestionComment(element) {
 
 function addQuestionCommentSubmit(element) {
   let id = element.id.slice(3);
-  document.getElementById(id).disabled = false;
   let commentName = document.getElementById("inp" + id).value;
   let comment = document.getElementById("area" + id).value;
 
   let data = {
-    testId: id,
+    questionId: id,
     commentName: commentName,
     comment: comment
   };
@@ -153,4 +152,6 @@ function moveCommentValuesToSubmitedDiv(id) {
 
   let div_el = document.getElementById("div" + id);
   div_el.innerHTML = "";
+
+  document.getElementById(id).disabled = false;
 }
