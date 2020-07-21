@@ -1,5 +1,7 @@
 <?php
 include "database-connection.php";
+require_once("index_start.php");
+echo "<div class=\"dialog\">";
 
 if ($_POST['testName']) {
     $GLOBALS['testName'] = $_POST['testName'];
@@ -95,3 +97,10 @@ function setQuestionId($connection)
 {
     $GLOBALS['questionId'] = $connection->lastInsertId();
 }
+
+
+echo "
+<a href='index.php'>Start Page</a>
+</div>";
+require_once("index_end.php");
+?>
