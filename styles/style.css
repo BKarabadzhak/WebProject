@@ -45,3 +45,12 @@
 .back-link {
   margin-top: 10px;
 }
+
+.comment {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.textArr {
+  margin-top: 7px;
+}

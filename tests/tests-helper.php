@@ -56,7 +56,7 @@ function getQuestions($connection, $testId)
     $sqlQuestion = $connection->prepare("SELECT * FROM questions WHERE test_id = '" . $testId . "';");
    
     if(!$sqlQuestion->execute()) {
-        throw "Error ".$sql->errorInfo();
+        throw "Error ".$sqlQuestion->errorInfo();
     }
 
     while ($rowQuestion = $sqlQuestion->fetch(PDO::FETCH_ASSOC)) {

@@ -88,12 +88,20 @@ function getQuestions($connection, $testId)
 {
     $questions = array();
     $sqlQuestion = $connection->prepare("SELECT * FROM questions WHERE test_id = '" . $testId . "';");
-    $sqlQuestion->execute();
+
+    if(!$sqlQuestion->execute()) {
+        throw "Error ".$sqlQuestion->errorInfo();
+    }
+
     while ($rowQuestion = $sqlQuestion->fetch(PDO::FETCH_ASSOC)) {
         $questionId = $rowQuestion['id'];
         $answersArray = array();
         $sql = $connection->prepare("SELECT * FROM answers WHERE question_id = '" . $questionId . "';");
-        $sql->execute();
+
+        if(!$sql->execute()) {
+            throw "Error ".$sql->errorInfo();
+        };
+        
         while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
             array_push($answersArray, new TestAnswer($row['id'], $row['answer'], boolval($row['is_correct'])));
         }
