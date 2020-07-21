@@ -51,7 +51,7 @@ function renderTestReview($questions, $testId, $connection)
         echo "<div class=\"question\">";
         echo "<div class=\"text\">";
         echo $question->question;
-        echo "<button type=\"button\" id=\"$question->id\" onclick=\"addQuestionComment(this)\">Add comment</button>";
+        echo "<button class=\"comment-btn\" type=\"button\" id=\"$question->id\" onclick=\"addQuestionComment(this)\">Add comment</button>";
         echo "</div>";
 
         echo "<div id=\"div" . $question->id . "\"></div>";
