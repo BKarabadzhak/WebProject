@@ -19,6 +19,18 @@ class Question {
             }
         }
     }
+
+    public function getCorrectAnswers() 
+    {
+        $correctAns = array();
+        foreach($this->answers as $answer) {
+            if($answer->isCorrect) {
+                array_push($correctAns, $answer);
+            }
+        }
+
+        return $correctAns;
+    }
 }
 
 ?>

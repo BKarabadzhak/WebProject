@@ -1,4 +1,4 @@
-.question {
+.question, .result {
     margin-top: 0.5rem;
     border: 3px solid #33495D;
     padding: 5px 20px 0 20px;
@@ -9,6 +9,15 @@
     padding: unset;
 }
 
+.result {
+    min-height: 100px;
+    text-align: center;
+}
+
+.result > span {
+    margin-top: auto;
+    margin-bottom: auto;
+}
 
 .container {
     /*width: 100%;*/

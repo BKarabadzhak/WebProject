@@ -16,7 +16,7 @@ $connection = openCon();
 $questions = getQuestions($connection, $testId);
 
 require("index_start.php");
-renderTest($questions);
+renderTest($questions, $testId);
 require("index_end.php");
 
 ?>
