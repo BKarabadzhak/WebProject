@@ -245,6 +245,7 @@ function addAnswerComment(element) {
   button.setAttribute("type", "button");
   button.setAttribute("id", "butAns" + element.id);
   button.setAttribute("onclick", "addQuestionCommentSubmitAns(this)");
+  button.setAttribute("class", "but-submit-comment");
   node = document.createTextNode("Submit");
   button.appendChild(node);
 
