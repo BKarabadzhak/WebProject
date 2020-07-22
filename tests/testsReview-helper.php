@@ -21,7 +21,7 @@ function openConn()
 
 if ($associativeArray) {
     $connection = openConn();
-    
+
     $commentName = $associativeArray['commentName'];
     $comment = $associativeArray['comment'];
     $questionId = $associativeArray['questionId'];
@@ -96,9 +96,35 @@ function renderTestReview($questions, $testId, $connection)
 
 
             echo "<input id='$inputId' name=\"$name\" type='$type' value=\"$answer->id\"/> <label for='$inputId'>$answer->text</label>";
-            echo "<button class=\"comment-btn\" type=\"button\" id=\"$answer->id\" onclick=\"addAnswerComment(this)\">Add comment</button>";
+            echo "<button type=\"button\" class=\"comment-btn\" id=\"" . "AnsBut" . "$answer->id\" onclick=\"addAnswerComment(this)\">Add comment</button>";
 
             echo "</li>";
+
+            echo "<div id=\"divAnsAnsBut" . $answer->id . "\"></div>";
+
+            echo "<div id=\"divAnsSubmitedAnsBut" . $answer->id . "\">";
+
+
+            $submittedCommentsToAnswer = array();
+            $sql = $connection->prepare("SELECT * FROM answers_comments WHERE answer_id = '" . $answer->id . "';");
+
+            if (!$sql->execute()) {
+                throw "Error " . $sql->errorInfo();
+            };
+
+            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+                array_push($submittedCommentsToAnswer, new Comment($row['id'], $row['comment_name'], $row['comment']));
+            }
+
+            foreach ($submittedCommentsToAnswer as $comment) {
+                echo "<p class=\"comment\" id=\"comAns" . $comment->id . "\">
+            <span>Comment name: " . $comment->name . "</span><br>
+            <span>Comment: " . $comment->comment . "</span><br>
+            <button type=\"button\" id=\"butDelAns" . $comment->id . "\" onclick=\"deleteCommentAns(this)\">Delete</button></p>";
+            }
+
+
+            echo "</div>";
         }
 
         echo "</ul>";
