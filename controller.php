@@ -34,7 +34,7 @@ if ($_FILES["file"]["tmp_name"]) {
     exit();
 }
 
-echo "<p>Your test " . $GLOBALS['testName'] . " has been loaded.</p>";
+echo "<p>Your test \"" . $GLOBALS['testName'] . "\" has been loaded.</p>";
 
 function showErrorMessageFileIsNotNamed()
 {

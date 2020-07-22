@@ -83,6 +83,7 @@ function addQuestionComment(element) {
   button.setAttribute("type", "button");
   button.setAttribute("id", "but" + element.id);
   button.setAttribute("onclick", "addQuestionCommentSubmit(this)");
+  button.setAttribute("class", "but-submit-comment");
   node = document.createTextNode("Submit");
   button.appendChild(node);
 
@@ -111,7 +112,7 @@ function addQuestionCommentSubmit(element) {
   var dataJSON = JSON.stringify(data);
   var dataRequest = {
     data: dataJSON,
-    url: "./tests/testsReview-helper.php",
+    url: "./add-comment-to-question.php",
     method: "POST",
     success: moveCommentValuesToSubmitedDiv,
   };
@@ -294,7 +295,7 @@ function moveCommentValuesToSubmitedDivAns(id, response) {
   let comment = document.getElementById("textAreaAns" + id).value;
 
   let divSubmited = document.getElementById("divAnsSubmited" + id);
-  let p_el = document.createElement("p");
+  let p_el = document.createElement("div");
   p_el.setAttribute("class", "comment");
   p_el.setAttribute("id", "comAns" + commentId);
 
@@ -315,11 +316,13 @@ function moveCommentValuesToSubmitedDivAns(id, response) {
 
   let br1 = document.createElement("br");
   let br2 = document.createElement("br");
+  let div_v = document.createElement("div");
 
-  p_el.appendChild(span1_el);
-  p_el.appendChild(br1);
-  p_el.appendChild(span2_el);
-  p_el.appendChild(br2);
+  div_v.appendChild(span1_el);
+  div_v.appendChild(br1);
+  div_v.appendChild(span2_el);
+  div_v.appendChild(br2);
+  p_el.appendChild(div_v);
   p_el.appendChild(button);
   divSubmited.appendChild(p_el);
 

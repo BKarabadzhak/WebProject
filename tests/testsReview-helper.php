@@ -1,40 +1,5 @@
 <?php
 
-$jsonData = file_get_contents('php://input');
-$dataClassObject = json_decode($jsonData);
-$associativeArray = json_decode(json_encode($dataClassObject), TRUE);
-
-function openConn()
-{
-
-    $cofs = include_once("configs.php");
-    $conn = null;
-    try {
-        $conn = new PDO("mysql:host=$cofs->dbhost;dbname=$cofs->dbname", $cofs->dbuser, $cofs->dbpass);
-    } catch (PDOException $ex) {
-        echo ("Unsuccessful connection to the database.");
-        exit();
-    }
-
-    return $conn;
-}
-
-if ($associativeArray) {
-    $connection = openConn();
-
-    $commentName = $associativeArray['commentName'];
-    $comment = $associativeArray['comment'];
-    $questionId = $associativeArray['questionId'];
-
-    $sql = $connection->prepare("INSERT INTO questions_comments (comment_name, comment, question_id) VALUES (?, ?, ?)");
-
-    if (!$sql->execute(array($commentName, $comment, $questionId))) {
-        throw "Error " . $sql->errorInfo();
-    };
-
-    echo $connection->lastInsertId();
-}
-
 function renderTestReview($questions, $testId, $connection)
 {
     echo "
@@ -96,7 +61,7 @@ function renderTestReview($questions, $testId, $connection)
 
 
             echo "<input id='$inputId' name=\"$name\" type='$type' value=\"$answer->id\"/> <label for='$inputId'>$answer->text</label>";
-            echo "<button type=\"button\" class=\"comment-btn\" id=\"" . "AnsBut" . "$answer->id\" onclick=\"addAnswerComment(this)\">Add comment</button>";
+            echo "<button type=\"button\" class=\"comment-btn\" id=\"AnsBut" . "$answer->id\" onclick=\"addAnswerComment(this)\">Add comment</button>";
 
             echo "</li>";
 
@@ -117,12 +82,14 @@ function renderTestReview($questions, $testId, $connection)
             }
 
             foreach ($submittedCommentsToAnswer as $comment) {
-                echo "<p class=\"comment\" id=\"comAns" . $comment->id . "\">
+                echo "<div class=\"comment\" id=\"comAns" . $comment->id . "\">
+            <div>
             <span>Comment name: " . $comment->name . "</span><br>
             <span>Comment: " . $comment->comment . "</span><br>
-            <button type=\"button\" id=\"butDelAns" . $comment->id . "\" onclick=\"deleteCommentAns(this)\">Delete</button></p>";
+            </div>
+            <button type=\"button\" class=\"comment-btn\" id=\"butDelAns" . $comment->id . "\" onclick=\"deleteCommentAns(this)\">Delete</button>
+            </div>";
             }
-
 
             echo "</div>";
         }
