@@ -11,6 +11,10 @@
   padding: unset;
 }
 
+.question li { 
+  padding: 5px 0;
+}
+
 .dialog {
   height: 10em;
   display: flex;
@@ -27,7 +31,6 @@
 }
 
 .container {
-  /*width: 100%;*/
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
